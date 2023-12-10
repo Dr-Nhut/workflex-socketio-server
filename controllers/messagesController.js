@@ -84,3 +84,14 @@ module.exports.getMessagesByUser = async (req, res, next) => {
     }
     catch (err) { console.log(err) }
 };
+
+module.exports.updateMessage = async (req, res) => {
+    try {
+        const _id = req.query.id;
+
+        await messageModel.findOneAndUpdate({ _id }, { seen: true });
+
+        res.json({ message: 'Updated message' })
+    }
+    catch (err) { console.log(err) }
+}
